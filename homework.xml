@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <app name="V4.02.41.B1" pars="${app.version.default.pars}">
+        <version deployapp="true" lang="zh_CN" id="V4.02.41.B1">
+            <daily>
+                <db ip="127.0.0.1">sybase</db>
+            </daily>
+        </version>
+    </app>
+</root>
