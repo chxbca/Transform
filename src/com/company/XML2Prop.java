@@ -27,7 +27,6 @@ class XML2Prop {
     void setFile(File file) throws DocumentException {
         this.file = file;
         createXML();
-        updateAllValue();
     }
 
     void setFile(String filePath) throws DocumentException {
@@ -38,6 +37,7 @@ class XML2Prop {
         SAXReader reader = new SAXReader();
         Document document = reader.read(file);
         root = document.getRootElement();
+        updateAllValue();
     }
 
     void updateAllValue() {
