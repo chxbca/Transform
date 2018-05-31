@@ -16,6 +16,7 @@ class XML2Prop {
     private Element root;
     private List<String> value = new ArrayList<>();
 
+
     XML2Prop(File file) throws DocumentException {
         setFile(file);
     }
@@ -32,6 +33,10 @@ class XML2Prop {
 
     void setFile(String filePath) throws DocumentException {
         setFile(new File(filePath));
+    }
+
+    public List<String> getValue() {
+        return new ArrayList<>(value);
     }
 
     private void createXML() throws DocumentException {
@@ -59,8 +64,6 @@ class XML2Prop {
             value.clear();
         }
 
-        traversalAttribute(element);
-
         for (Iterator it = element.elementIterator(); it.hasNext(); ) {
             Element next = (Element) it.next();
             String s = next.getUniquePath();
@@ -72,12 +75,13 @@ class XML2Prop {
             }
             traversalElement(next);
         }
+        traversalAttribute(element);
     }
 
     private void traversalAttribute(Element element) {
         for (Iterator it = element.attributeIterator(); it.hasNext(); ) {
             Attribute attribute = (Attribute) it.next();
-            String s = attribute.getPath();
+            String s = attribute.getUniquePath();
             s = s.substring(1).replace('/', '.');
             int index = s.lastIndexOf('@');
             s = s.substring(0, index) + s.substring(index + 1, s.length());
